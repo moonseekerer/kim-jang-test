@@ -4,41 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>?⑦넚諛?移쒓뎄 ?좏삎 ?뚯뒪??(Real Ver.)</title>
-    <link rel="stylesheet" href="style.css?v=260204.2238">
+    <title>단톡방 친구 유형 테스트 (Real Ver.)</title>
+    <link rel="stylesheet" href="style.css?v=260204.2242">
 </head>
 
 <body>
 
     <div id="special-horror" class="special-horror-screen shake-constant flash-constant" style="display:none;">
         <div class="horror-bg-overlay" id="horror-text-wall"></div>
-        <div class="glitch-text" style="font-size: 5rem;">李얠븯??..</div>
-        <div class="blood-text" style="font-size: 2.5rem; color: #fff; text-shadow: 0 0 10px #f00;">吏?좎븘!! ?대뵒?덈땲? ??紐⑹냼由???
-            ?ㅻ윭?</div>
+        <div class="glitch-text" style="font-size: 5rem;">찾았다...</div>
+        <div class="blood-text" style="font-size: 2.5rem; color: #fff; text-shadow: 0 0 10px #f00;">지흠아!! 어디있니? 니 목소리 안
+            들러?</div>
         <div style="margin-top: 40px; font-size: 1.2rem; opacity: 0.8; color: #ff4757; font-weight: bold;">
-            ?꾨쭩移????놁뼱. ????嫄곗빞.
+            도망칠 수 없어. 넌 내 거야.
         </div>
         <button class="btn" onclick="location.reload()"
             style="margin-top: 50px; background: #ff0000; color: #000; border: none; font-weight: 900; padding: 15px 40px; box-shadow: 0 0 20px #f00;">
-            ?ㅼ떆 ?쒕룄?섍린...?
+            다시 시도하기...?
         </button>
     </div>
 
 
     <div class="container">
-        <!-- 1. ?쒖옉 ?붾㈃ -->
+        <!-- 1. 시작 화면 -->
         <div id="intro" class="intro-screen">
             <div id="random-showcase" class="random-showcase">
-                <!-- ?먮컮?ㅽ겕由쏀듃?먯꽌 ?숈쟻?쇰줈 ?꾩씠???앹꽦 -->
+                <!-- 자바스크립트에서 동적으로 아이템 생성 -->
             </div>
-            <h1>源怨쇱옣 ?뚯뒪??br><span style="font-size:1.2rem; font-weight:normal;">(遺?? ?뱀떊??媛臾몄?)</span></h1>
-            <p class="desc">移댄넚 ????댁슜?쇰줈 ?뚯븘蹂대뒗<br>?섏쓽 ?뚯슱硫붿씠??李얘린!</p>
-            <button class="btn" onclick="startTest()">?쒖옉?섍린</button>
-            <div id="version-display" style="margin-top: 30px; font-size: 0.8rem; opacity: 0.5;">Ver. 260204.2238</div>
+            <h1>김과장 테스트<br><span style="font-size:1.2rem; font-weight:normal;">(부제: 당신의 가문은)</span></h1>
+            <p class="desc">카톡 대화 내용으로 알아보는<br>나의 소울메이트 찾기!</p>
+            <button class="btn" onclick="startTest()">시작하기</button>
+            <div id="version-display" style="margin-top: 30px; font-size: 0.8rem; opacity: 0.5;">Ver. 260204.2242</div>
         </div>
 
 
-        <!-- 2. 吏덈Ц ?붾㈃ -->
+        <!-- 2. 질문 화면 -->
         <div id="quiz" class="question-screen">
             <div class="progress-bar">
                 <div id="progress" class="progress-fill"></div>
@@ -47,19 +47,19 @@
             <div id="answers"></div>
             <div style="margin-top:20px; display: flex; justify-content: center; gap: 10px;">
                 <button id="home-btn" class="btn-secondary" onclick="goToIntro()"
-                    style="display:none; font-size: 0.9rem; padding: 10px 20px;">?룧 泥섏쓬?쇰줈</button>
+                    style="display:none; font-size: 0.9rem; padding: 10px 20px;">🏠 처음으로</button>
                 <button id="prev-btn" class="btn-secondary" onclick="prevQuestion()"
-                    style="display:none; font-size: 0.9rem; padding: 10px 20px;">燧낉툘 ?댁쟾 吏덈Ц?쇰줈</button>
+                    style="display:none; font-size: 0.9rem; padding: 10px 20px;">⬅️ 이전 질문으로</button>
             </div>
         </div>
 
-        <!-- 3. 寃곌낵 ?붾㈃ -->
+        <!-- 3. 결과 화면 -->
         <div id="result" class="result-screen">
             <div class="result-content">
-                <div class="type-badge">?뱀떊??寃곌낵??/div>
+                <div class="type-badge">당신의 결과는</div>
                 <div id="result-family-bg" class="family-name">?</div>
-                <h1 id="result-title" style="margin: 10px 0 10px 0; color: #fab1a0;">媛臾?/h1>
-                <h3 id="result-subtitle" style="margin: 0 0 20px 0;">?대쫫</h3>
+                <h1 id="result-title" style="margin: 10px 0 10px 0; color: #fab1a0;">가문</h1>
+                <h3 id="result-subtitle" style="margin: 0 0 20px 0;">이름</h3>
 
                 <div id="result-emoji" class="result-img"></div>
 
@@ -71,11 +71,12 @@
 
                 <div id="result-stats" class="stat-box" style="display:none;"></div>
 
-                <!-- ?곗씠??遺꾩꽍 寃곌낵 諛뺤뒪 -->
-                <div id="analysis-detail" class="stat-box" style="display:none; margin-bottom: 20px;">
+                <!-- 데이터 분석 결과 박스 -->
+                <div id="analysis-detail" class="stat-box"
+                    style="display:none; margin-bottom: 20px; background: rgba(108, 92, 231, 0.2); border-color: var(--primary-color);">
                 </div>
 
-                <button class="btn" onclick="location.reload()" style="margin-top:20px;">?ㅼ떆 ?섍린</button>
+                <button class="btn" onclick="location.reload()" style="margin-top:20px;">다시 하기</button>
             </div>
         </div>
     </div>

@@ -9,21 +9,10 @@ echo =======================================
 :: 현재 날짜와 시간으로 버전 생성 (YYMMDD.HHMM)
 for /f "tokens=*" %%i in ('powershell -NoProfile -Command "Get-Date -Format 'yyMMdd.HHmm'"') do set version=%%i
 
-:: PowerShell을 사용하여 index.html 수정 (한글 깨짐 방지 버전)
-:: 1. UTF8로 파일 읽기 (-Raw로 전체 문자열 취득)
-:: 2. 내용 치환
-:: 3. BOM 없는 UTF8로 저장
-powershell -NoProfile -ExecutionPolicy Bypass -Command ^
-    "$path = 'index.html'; ^
-     $content = Get-Content -Path $path -Raw -Encoding UTF8; ^
-     $content = $content -replace 'Ver\. \d{6}\.\d{4}', 'Ver. %version%'; ^
-     $content = $content -replace 'Ver\. 1\.0\.0', 'Ver. %version%'; ^
-     $content = $content -replace 'style\.css\?v=[^\"'']+', 'style.css?v=%version%'; ^
-     $content = $content -replace 'script\.js\?v=[^\"'']+', 'script.js?v=%version%'; ^
-     $utf8NoBom = New-Object System.Text.UTF8Encoding $false; ^
-     [System.IO.File]::WriteAllText($path, $content, $utf8NoBom);"
+:: PowerShell을 한 줄로 실행하여 줄바꿈(^) 오류 원천 차단
+powershell -NoProfile -ExecutionPolicy Bypass -Command "$path = 'index.html'; $content = Get-Content -Path $path -Raw -Encoding UTF8; $content = $content -replace 'Ver\. \d{6}\.\d{4}', 'Ver. %version%' -replace 'Ver\. 1\.0\.0', 'Ver. %version%' -replace 'style\.css\?v=[^\"'']+', ('style.css?v=' + '%version%') -replace 'script\.js\?v=[^\"'']+', ('script.js?v=' + '%version%'); [System.IO.File]::WriteAllText($path, $content, (New-Object System.Text.UTF8Encoding $false))"
 
-echo [%version%] 버전으로 업데이트 완료! 한글 인코딩을 보호했습니다.
+echo [%version%] 버전으로 업데이트 및 한글 인코딩 보호 완료!
 
 echo =======================================
 echo     깃허브 자동 업로드를 시작합니다
