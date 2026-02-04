@@ -13,8 +13,8 @@ git add .
 set current_time=%date% %time%
 git commit -m "Auto Update: %current_time%"
 
-:: 3. 깃허브 서버로 내보내기 (사용자님의 브랜치 이름인 master 기준)
-git push origin master
+:: 3. 깃허브 서버로 내보내기 (이제 main 브랜치로 통일합니다)
+git push origin main
 
 echo.
 echo =======================================
