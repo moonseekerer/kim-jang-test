@@ -308,16 +308,17 @@ function showResult(forcedKey = null, forceHorror = false, isSpecial = false) {
     const aData = analyzedData[resultKey];
     if (aData) {
         const analysisBox = document.getElementById('analysis-detail');
-        analysisBox.style.background = `${d.bg}33`; // 배경색에 투명도 20% 추가 (HEXA)
-        analysisBox.style.borderColor = d.bg;
+        analysisBox.style.background = `rgba(0, 0, 0, 0.4)`; // 고정된 어두운 배경으로 가독성 확보
+        analysisBox.style.borderLeft = `5px solid ${d.bg}`; // 테두리만 캐릭터 색상으로 강조
+        analysisBox.style.borderColor = `rgba(255, 255, 255, 0.1)`;
 
         let recentRank = 1;
         Object.values(analyzedData).forEach(obj => { if (obj.recent.total > aData.recent.total) recentRank++; });
         let allTimeRank = 1;
         Object.values(analyzedData).forEach(obj => { if (obj.allTime.total > aData.allTime.total) allTimeRank++; });
 
-        let recentKeywords = aData.recent.top.map(k => `<span class="tag" style="background:${d.bg}; color:white; font-size:0.75rem;">${k[0]} (${k[1]})</span>`).join(' ');
-        let allTimeKeywords = aData.allTime.top.map(k => `<span class="tag" style="border: 1px solid ${d.bg}; background:transparent; color:white; font-size:0.75rem;">${k[0]} (${k[1]})</span>`).join(' ');
+        let recentKeywords = aData.recent.top.map(k => `<span class="tag" style="background:${d.bg}; color:white; font-weight:bold; border:none;">${k[0]} (${k[1]})</span>`).join(' ');
+        let allTimeKeywords = aData.allTime.top.map(k => `<span class="tag" style="border: 1px solid ${d.bg}; background:rgba(255,255,255,0.05); color:white; font-size:0.75rem;">${k[0]} (${k[1]})</span>`).join(' ');
 
         analysisBox.innerHTML = `
             <h4 style="margin:0 0 15px 0; color:#fab1a0; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:5px;">📊 대화 데이터 분석 팩트</h4>
