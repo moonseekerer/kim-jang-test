@@ -269,6 +269,7 @@ function showResult(forcedKey = null, forceHorror = false, isSpecial = false) {
     document.getElementById('result-desc').innerHTML = d.desc;
 
     document.documentElement.style.setProperty('--bg-color', d.bg);
+    document.getElementById('result-emoji').style.borderColor = d.bg; // 이모티콘 원 테두리 색상 변경
 
     let tagsHtml = '';
     d.tags.forEach(tag => tagsHtml += `<span class="tag">${tag}</span>`);
@@ -294,7 +295,7 @@ function showResult(forcedKey = null, forceHorror = false, isSpecial = false) {
             <div class="stat-row">
                 <div class="stat-name">${rankEmoji} ${displayName}</div>
                 <div class="stat-bar-bg">
-                    <div class="stat-bar-fill" style="width: ${percent}%"></div>
+                    <div class="stat-bar-fill" style="width: ${percent}%; background: ${charInfo.bg};"></div>
                 </div>
                 <div class="stat-score">${score}</div>
             </div>
