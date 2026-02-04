@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>단톡방 친구 유형 테스트 (Real Ver.)</title>
-    <link rel="stylesheet" href="style.css?v=260204.2333">
+    <link rel="stylesheet" href="style.css?v=260205.0005">
 </head>
 
 <body>
@@ -36,28 +36,12 @@
             <button class="btn" onclick="startTest()">시작하기</button>
             <button class="btn-saju" onclick="location.href='saju.html'"
                 style="margin-top:15px; width: auto; padding: 12px 30px; font-size: 1rem;">🔮 대운(사주) 확인하기</button>
-            <div id="version-display" style="margin-top: 30px; font-size: 0.8rem; opacity: 0.5;">Ver. 260204.2333</div>
-
-            <!-- 쿠팡 파트너스 시작화면 광고 -->
-            <div class="ad-section"
-                style="margin-top: 40px; border-top: 1px dashed rgba(255,255,255,0.2); padding-top: 20px;">
-                <p style="font-size: 0.8rem; opacity: 0.7; margin-bottom: 10px;">🎁 오늘의 추천 특가</p>
-                <div id="intro-coupang-ad"
-                    style="min-height: 140px; background: rgba(255,255,255,0.05); border-radius: 10px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
-                    <script src="https://ads-partners.coupang.com/g.js"></script>
-                    <script>
-                        new PartnersCoupang.G({ "id": 963044, "template": "carousel", "trackingCode": "AF6477058", "width": "100%", "height": "140", "tsource": "" });
-                    </script>
-                </div>
-                <p style="font-size: 10px; opacity: 0.4; margin-top: 10px; line-height: 1.4;">
-                    이 포스팅은 쿠팡 파트너스 활동의 일환으로,<br>이에 따른 일정액의 수수료를 제공받습니다.
-                </p>
-            </div>
+            <div id="version-display" style="margin-top: 30px; font-size: 0.8rem; opacity: 0.5;">Ver. 260205.0005</div>
         </div>
 
 
         <!-- 2. 질문 화면 -->
-        <div id="quiz" class="question-screen">
+        <div id="quiz" class="question-screen" style="display:none;">
             <div class="progress-bar">
                 <div id="progress" class="progress-fill"></div>
             </div>
@@ -72,7 +56,7 @@
         </div>
 
         <!-- 3. 결과 화면 -->
-        <div id="result" class="result-screen">
+        <div id="result" class="result-screen" style="display:none;">
             <div class="result-content">
                 <div class="type-badge">당신의 결과는</div>
                 <div id="result-family-bg" class="family-name">?</div>
@@ -97,28 +81,11 @@
                 <button class="btn" onclick="location.reload()" style="margin-top:20px;">다시 하기</button>
                 <button class="btn-saju" onclick="location.href='saju.html'" style="margin-top:10px;">🔮 내 사주
                     보러가기</button>
-
-                <!-- 쿠팡 파트너스 영역 -->
-                <div class="ad-section"
-                    style="margin-top: 30px; border-top: 1px dashed rgba(255,255,255,0.2); padding-top: 20px;">
-                    <p style="font-size: 0.9rem; color: #fab1a0; margin-bottom: 15px;">🛒 <span
-                            id="char-name-at-ad">캐릭터</span>님을 위한 추천 아이템</p>
-                    <div id="coupang-ad-placeholder"
-                        style="min-height: 140px; background: rgba(255,255,255,0.05); border-radius: 10px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
-                        <script src="https://ads-partners.coupang.com/g.js"></script>
-                        <script>
-                            new PartnersCoupang.G({ "id": 963044, "template": "carousel", "trackingCode": "AF6477058", "width": "100%", "height": "140", "tsource": "" });
-                        </script>
-                    </div>
-                    <p style="font-size: 10px; opacity: 0.4; margin-top: 10px; line-height: 1.4;">
-                        이 포스팅은 쿠팡 파트너스 활동의 일환으로,<br>이에 따른 일정액의 수수료를 제공받습니다.
-                    </p>
-                </div>
             </div>
         </div>
     </div>
 
-    <script src="script.js?v=1.0.0"></script>
+    <script src="script.js?v=260204.2351"></script>
 </body>
 
 </html>

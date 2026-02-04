@@ -179,6 +179,8 @@ const questions = [
 
 let currentStep = 0;
 let scoreHistory = []; // 점수 기록 보관 (뒤로가기용)
+let pendingResultParams = null; // 광고 팝업 동안 대기할 결과 데이터
+let hasAdShown = false; // 광고 노출 여부 추적
 
 function startTest() {
     questions.sort(() => Math.random() - 0.5);
@@ -263,6 +265,7 @@ function goToIntro() {
     document.getElementById('quiz').style.display = 'none';
     document.getElementById('intro').style.display = 'block';
     document.body.classList.remove('horror-mode'); // 혹시 모를 공포 모드 제거
+    hasAdShown = false; // 재시작 시 광고 노출 여부 초기화
 }
 
 function showResult(forcedKey = null, forceHorror = false, isSpecial = false) {
@@ -428,3 +431,15 @@ function initIntroShowcase() {
 }
 
 window.onload = initIntroShowcase;
+function closeAdPopup() {
+    const adPopup = document.getElementById('ad-popup');
+    if (adPopup) {
+        adPopup.style.display = 'none';
+        // 저장해둔 파라미터로 다시 결과 실행
+        if (pendingResultParams) {
+            const { forcedKey, forceHorror, isSpecial } = pendingResultParams;
+            pendingResultParams = null; // 초기화
+            showResult(forcedKey, forceHorror, isSpecial);
+        }
+    }
+}
