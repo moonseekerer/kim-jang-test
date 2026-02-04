@@ -305,6 +305,9 @@ function showResult(forcedKey = null, forceHorror = false, isSpecial = false) {
     document.getElementById('result-emoji').innerText = d.emoji;
     document.getElementById('result-desc').innerHTML = d.desc;
 
+    // 광고 섹션에 캐릭터 이름 넣기
+    document.getElementById('char-name-at-ad').innerText = (d.family === '류' ? '류지흠' : d.family + "씨");
+
     document.documentElement.style.setProperty('--bg-color', d.bg);
     document.getElementById('result-emoji').style.borderColor = 'rgba(255, 255, 255, 0.3)'; // 반투명 테두리로 변경
     document.getElementById('result-emoji').style.boxShadow = `0 0 15px ${d.bg}88`; // 광채 강도를 낮추고 투명도 추가
