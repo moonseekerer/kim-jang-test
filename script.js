@@ -229,7 +229,7 @@ function nextQuestion() {
                 }
             }
 
-            if (answer.text.includes("지흠아!!") && Math.random() < 0.66) {
+            if (answer.text.includes("지흠아!!") && Math.random() < 0.1) {
                 showResult('lee', true, true);
                 return;
             }
@@ -313,7 +313,7 @@ function showResult(forcedKey = null, forceHorror = false, isSpecial = false) {
     d.tags.forEach(tag => tagsHtml += `<span class="tag">${tag}</span>`);
     document.getElementById('result-tags').innerHTML = tagsHtml;
 
-    if (resultKey === 'lee' && (forceHorror || Math.random() < 0.66)) {
+    if (resultKey === 'lee' && (forceHorror || Math.random() < 0.1)) {
         document.body.classList.add('horror-mode');
         eggStatus = "이재환 공포 모드 (확률형)";
     } else {
