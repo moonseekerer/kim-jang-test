@@ -1,4 +1,5 @@
 *.txt
 *.json
+*.py
 __pycache__/
 *.pyc
