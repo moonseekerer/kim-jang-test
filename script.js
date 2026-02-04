@@ -178,6 +178,7 @@ const questions = [
 ];
 
 let currentStep = 0;
+let scoreHistory = []; // 점수 기록 보관 (뒤로가기용)
 
 function startTest() {
     questions.sort(() => Math.random() - 0.5);
@@ -190,6 +191,16 @@ function nextQuestion() {
     if (currentStep >= questions.length) {
         showResult();
         return;
+    }
+
+    // 뒤로가기 버튼 표시 여부
+    const prevBtn = document.getElementById('prev-btn');
+    if (prevBtn) { // prevBtn이 존재하는지 확인
+        if (currentStep > 0) {
+            prevBtn.style.display = 'inline-block';
+        } else {
+            prevBtn.style.display = 'none';
+        }
     }
 
     const q = questions[currentStep];
@@ -207,6 +218,9 @@ function nextQuestion() {
         btn.className = 'answer-btn';
         btn.innerText = answer.text;
         btn.onclick = () => {
+            // 현재 점조 상태 저장
+            scoreHistory.push(JSON.parse(JSON.stringify(scores)));
+
             if (answer.score) {
                 for (const [char, point] of Object.entries(answer.score)) {
                     scores[char] += point;
@@ -218,14 +232,22 @@ function nextQuestion() {
                 return;
             }
 
-
-
             selectedAnswers.push(answer.text);
             currentStep++;
             nextQuestion();
         };
         answerBox.appendChild(btn);
     });
+}
+
+function prevQuestion() {
+    if (currentStep > 0) {
+        currentStep--;
+        // 이전 점수 복구
+        scores = scoreHistory.pop();
+        selectedAnswers.pop();
+        nextQuestion();
+    }
 }
 
 function showResult(forcedKey = null, forceHorror = false, isSpecial = false) {
