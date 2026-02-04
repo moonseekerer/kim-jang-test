@@ -306,8 +306,8 @@ function showResult(forcedKey = null, forceHorror = false, isSpecial = false) {
     document.getElementById('result-desc').innerHTML = d.desc;
 
     document.documentElement.style.setProperty('--bg-color', d.bg);
-    document.getElementById('result-emoji').style.borderColor = '#fff'; // 흰색 테두리로 가시성 확보
-    document.getElementById('result-emoji').style.boxShadow = `0 0 20px ${d.bg}`; // 테마색 광채 추가
+    document.getElementById('result-emoji').style.borderColor = 'rgba(255, 255, 255, 0.3)'; // 반투명 테두리로 변경
+    document.getElementById('result-emoji').style.boxShadow = `0 0 15px ${d.bg}88`; // 광채 강도를 낮추고 투명도 추가
 
     let tagsHtml = '';
     d.tags.forEach(tag => tagsHtml += `<span class="tag">${tag}</span>`);
@@ -330,12 +330,12 @@ function showResult(forcedKey = null, forceHorror = false, isSpecial = false) {
         let displayName = charInfo.family + "씨";
         let rankEmoji = medals[i];
 
-        // 배경과 구분을 위해 바에 테두리와 그라데이션 추가
+        // 너무 쨍하지 않게 그라데이션과 그림자 톤 조절
         statsHtml += `
             <div class="stat-row">
                 <div class="stat-name">${rankEmoji} ${displayName}</div>
                 <div class="stat-bar-bg">
-                    <div class="stat-bar-fill" style="width: ${percent}%; background: linear-gradient(90deg, ${charInfo.bg}, #fff); border: 1px solid rgba(255,255,255,0.5);"></div>
+                    <div class="stat-bar-fill" style="width: ${percent}%; background: linear-gradient(90deg, ${charInfo.bg}, ${charInfo.bg}aa); border: 1px solid rgba(255,255,255,0.2);"></div>
                 </div>
                 <div class="stat-score">${score}</div>
             </div>
