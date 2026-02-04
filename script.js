@@ -193,14 +193,16 @@ function nextQuestion() {
         return;
     }
 
-    // 뒤로가기 버튼 표시 여부
+    // 버튼 표시 여부 제어
+    const homeBtn = document.getElementById('home-btn');
     const prevBtn = document.getElementById('prev-btn');
-    if (prevBtn) { // prevBtn이 존재하는지 확인
-        if (currentStep > 0) {
-            prevBtn.style.display = 'inline-block';
-        } else {
-            prevBtn.style.display = 'none';
-        }
+
+    if (currentStep === 0) {
+        homeBtn.style.display = 'inline-block';
+        prevBtn.style.display = 'none';
+    } else {
+        homeBtn.style.display = 'none';
+        prevBtn.style.display = 'inline-block';
     }
 
     const q = questions[currentStep];
@@ -218,7 +220,7 @@ function nextQuestion() {
         btn.className = 'answer-btn';
         btn.innerText = answer.text;
         btn.onclick = () => {
-            // 현재 점조 상태 저장
+            // 현재 상태 저장 (깊은 복사)
             scoreHistory.push(JSON.parse(JSON.stringify(scores)));
 
             if (answer.score) {
@@ -243,11 +245,24 @@ function nextQuestion() {
 function prevQuestion() {
     if (currentStep > 0) {
         currentStep--;
-        // 이전 점수 복구
         scores = scoreHistory.pop();
         selectedAnswers.pop();
         nextQuestion();
     }
+}
+
+function goToIntro() {
+    // 모든 상태 초기화 후 메인으로
+    currentStep = 0;
+    scoreHistory = [];
+    selectedAnswers = [];
+    scores = {
+        'park': 0, 'kim': 0, 'ryu': 0, 'hwang': 0, 'shin': 0,
+        'no': 0, 'jang': 0, 'lee': 0, 'jung': 0, 'lim': 0
+    };
+    document.getElementById('quiz').style.display = 'none';
+    document.getElementById('intro').style.display = 'block';
+    document.body.classList.remove('horror-mode'); // 혹시 모를 공포 모드 제거
 }
 
 function showResult(forcedKey = null, forceHorror = false, isSpecial = false) {
